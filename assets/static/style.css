@@ -1,0 +1,180 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #000;
+    color: #fff;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content min-content min-content;
+    grid-template-areas: 
+        "header"
+        "nav"
+        "main"
+        "aside"
+    ;
+
+    font-family: sans-serif;
+    font-size: 19px;
+    font-kerning: auto;
+
+    margin: 0;
+    min-height: 100vh;
+}
+
+@media (max-width: 1049px) {
+    nav, aside {
+        text-align: center;
+    }
+
+    nav a, aside a {
+        margin: 0.2em 0.4em;
+    }
+}
+
+@media (min-width: 720px) {
+    body {
+        grid-template-columns: 1fr 720px 1fr;
+        grid-template-areas: 
+            "header header header"
+            ". nav ."
+            ". main ."
+            ". aside ."
+        ;
+    }
+
+    aside, main, nav {
+        padding: 0;
+    }
+
+    nav a, aside a {
+        display: block;
+    }
+}
+
+@media (min-width: 1050px) {
+    body {
+        grid-template-columns: 1fr 720px 300px 1fr;
+        grid-template-rows: min-content min-content 1fr;
+        grid-template-areas: 
+            "header header header header"
+            ". main nav ."
+            ". main aside ."
+        ;
+    }
+
+    nav a, aside a {
+        margin: 0.2em 0;
+    }
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a.tag {
+    text-decoration: none;
+}
+
+aside {
+    grid-area: aside;
+    padding: 0 10px;
+}
+
+aside a {
+    display: block;
+    font-size: 1.5em;
+}
+
+h1 {
+    font-size: 56px;
+    padding: 30px;
+}
+
+header {
+    grid-area: header;
+}
+
+header h1 {
+    margin: 0;
+    font-weight: 900;
+    font-size: 56px;
+}
+
+main {
+    grid-area: main;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+nav {
+    grid-area: nav;
+    padding: 0 10px;
+}
+
+nav a, aside a {
+    font-weight: 900;
+}
+
+nav a {
+    text-transform: uppercase;
+    display: inline-block;
+    font-size: 2.5em;
+}
+
+nav a.active {
+    font-style: italic;
+}
+
+nav a.current {
+    font-style: italic;
+}
+
+p {
+    line-height: 1.6em;
+}
+
+p a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+p img {
+    border: 1px solid #fff;
+    width: 100%;
+}
+
+.blog-post h2 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.blog-post h2 a {
+    font-size: 28px;
+}
+
+.blog-post .date {
+    font-size: 16px;
+    margin: 0;
+}
+
+.blog-post .tags {
+    margin: 0 0 36px;
+}
+
+.blog-post .tags .tag {
+    font-size: 12px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+}
+
+.tag {
+    border: 1px solid #fff;
+    padding: 0.2em 0.4em;
+}

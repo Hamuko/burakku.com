@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>
+  <span class="tag">{{ this.tag }}</span>
+</h1>
+<ul style="list-style: japanese-formal;">
+  {% for item in this.items %}
+    <li><a href="{{ item|url }}">{{ item.title }}</a></li>
+  {% else %}
+    <li><em>No items.</em></li>
+  {% endfor %}
+</ul>
+{% endblock %}

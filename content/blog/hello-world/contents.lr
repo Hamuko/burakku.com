@@ -1,0 +1,25 @@
+title: Blog
+---
+pub_date: 2023-04-14
+---
+body:
+
+Everything old is new again.
+
+Seeing as Twitter has been ([unsurprisingly](https://twitter.com/Mailia/status/1514584742208970759)) in a constant backslide since last autumn, I've decided that I need to start diversifying where I output all of my thoughts and opinions. And considering what a craptastic thing Mastodon is, I'd rather not partake in it either.
+
+Therefore, I have decided that I should have a web log. Just like in the good old days.
+
+I have probably attempted to have a blog in the past too, without much success. I was much more of a fan of microblogging, which is probably why I've been on Twitter for the past 15 years. But since there's a massive vacuum in the microblogging space, I've decided to pivot into (macro?)blogging.
+
+Quite honestly, I do not have a long-term vision for this blog beyond having a space to store whatever I feel like I need to release into the wildness of the Internet. Most likely it'll be just a pool of random thoughts about whatever interests I have at the time, without any kind of a specific audience in mind beyond myself. Possibly also quite a lot of grumbling and venting. The first posts are just short reviews of the games that I've played lately, reposted from [my Steam profile](https://steamcommunity.com/id/mailia).
+
+Also, considering what has been dominating the tech news for the entirety of 2023, I'll start off by proclaiming that this blog will not be written by large language models, but by something resembling a human.
+
+### Technical
+
+This entire site is a static site made with [Lektor](https://www.getlektor.com/). I chose Lektor because it's built on Python and uses [Jinja2](https://jinja.palletsprojects.com/) for templating, and I'm already familiar with both of those so it's easy to hack on. And I chose to use a static site because it's much simpler to run. No need to worry about your unpatched Wordpress installation becoming part of a botnet.
+
+For the layout, I just hammered away on the default layout that it bootstraps until it looked like me. It probably has very little in common with the initial layout now. Not gonna lie, restricting yourself to black and white does make it a bit hard, but I think my hands were tied with that one when I decided to use this domain.
+
+There's also an [Atom feed](/feed.xml).

@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% from "macros/blog.html" import render_blog_post %}
+## {% from "macros/pagination.html" import render_pagination %}
+{% block title %}{{ this.title }}{% endblock %}
+{% block body %}
+  {{ this.body }}
+  <h2>Latest blog posts:</h2>
+  {% for child in this.children.filter(F.title == "Blog").first().pagination.items.limit(5) %}
+    {{ render_blog_post(child, from_index=true) }}
+  {% endfor %}
+{% endblock %}

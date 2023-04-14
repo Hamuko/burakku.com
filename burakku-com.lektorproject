@@ -1,0 +1,7 @@
+[project]
+name = burakku.com
+url = https://burakku.com
+
+[packages]
+lektor-tags = 0.5.1
+lektor-atom = 0.4.0

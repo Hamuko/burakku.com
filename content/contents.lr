@@ -1,0 +1,6 @@
+title: Home
+---
+body:
+<span style="font-family: monospace; font-size: 12px;">the internet isnt a place for humans anymore</span>
+---
+_template: home.html

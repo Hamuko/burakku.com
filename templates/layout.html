@@ -1,0 +1,35 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+  <link rel="stylesheet" href="{{ '/static/style.css'|url }}">
+  <link rel="alternate" type="application/atom+xml" title="ブラック" href="/feed.xml">
+  <title>{% block title %}{% endblock %} - ブラック</title>
+</head>
+<body>
+  <header>
+    <a href="/">
+      <h1>ブラック</h1>
+    </a>
+  </header>
+  <main>
+    {% block body %}{% endblock %}
+  </main>
+  <nav>
+    <a {% if this._path == '/' %}class="active" {% endif %}href="/">Home</a>
+    {% for href, title in [
+      ["/blog", "Blog"],
+    ] %}
+      <a {% if this.is_child_of(href) %}class="active" {% endif %}href="{{ href|url }}">{{ title }}</a>
+    {% endfor %}
+  </nav>
+  <aside>
+    <a target="_blank" href="https://steamcommunity.com/id/mailia">Steam</a>
+    <a target="_blank" href="https://github.com/Hamuko">GitHub</a>
+    <a target="_blank" href="https://discordapp.com/users/270256376406605826">Discord</a>
+    <a target="_blank" href="https://bsky.app/profile/mailia.bsky.social">Bluesky</a>
+    <a target="_blank" href="https://twitter.com/Mailia">Twitter</a>
+    <a target="_blank" href="https://anilist.co/user/Mailia/">AniList</a>
+    <a target="_blank" href="https://www.youtube.com/@Mailia.">YouTube</a>
+    <a target="_blank" href="https://howlongtobeat.com/user/Mailia">HowLongToBeat</a>
+  </aside>
+</body>
