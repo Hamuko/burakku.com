@@ -5,3 +5,4 @@ url = https://burakku.com
 [packages]
 lektor-tags = 0.5.1
 lektor-atom = 0.4.0
+lektor-strip-html-tags = 0.3

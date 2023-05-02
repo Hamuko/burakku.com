@@ -5,7 +5,9 @@
 {% block title %}{{ this.title }}{% endblock %}
 
 {% block meta %}
+  <meta property="og:site_name" content="ブラック">
   <meta property="og:title" content="{{ this.title }}">
+  <meta property="og:description" content="{{ (this.body.html|striphtmltags).split('\n')[0]|truncate(180, False, '...', 20) }}">
   <meta property="og:type" content="article">
   <meta property="og:url" content="{{ this|url(external=True) }}">
   {% with thumbnail=this.attachments.filter(F._id.startswith("thumbnail")).first() %}
