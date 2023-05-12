@@ -1,0 +1,69 @@
+title: yurizaki 1.0.0
+---
+pub_date: 2023-05-13
+---
+tags:
+
+software
+---
+body:
+
+![Yurizaki Mira](thumbnail.jpg)
+
+It's finally out! My first ever Rust project!
+
+[Get it on GitHub now!](https://github.com/Hamuko/yurizaki)
+
+yurizaki is a file copying and sorting daemon written in Rust, made specifically for anime and fansub releases. It's specifically meant to automatically upgrade files in your library with better release groups and newer versions. You can specify multiple release groups and it'll replace lower-ranked groups with higher-ranked groups when they are added to the source directory.
+
+Everything is set up with a YAML file. For example:
+
+```yaml
+source: /src
+library: /dst
+
+Go to Bed:
+  aliases:
+    - Kimi wa Nero
+  groups:
+    - Shino
+    - SupersDisplease
+```
+
+Then if you run yurizaki and start adding files to the source directory, you can see yurizaki matching, copying and removing files to keep the highest version of the highest-ranked release group in the library:
+
+```
+MATCH: "[SupersDisplease] Kimi wa Nero - 01 (1080p) [3838CF72].mkv" => Go to Bed
+No other release
+Copied "[SupersDisplease] Kimi wa Nero - 01 (1080p) [3838CF72].mkv" to "/dst/Go to Bed/[SupersDisplease] Kimi wa Nero - 01 (1080p) [3838CF72].mkv"
+
+MATCH: "[Shino] Go to Bed 01 [1080p Hi10P AC3][F4D8E418].mkv" => Go to Bed
+Inferior release found: "/dst/Go to Bed/[SupersDisplease] Kimi wa Nero - 01 (1080p) [3838CF72].mkv"
+Copied "[Shino] Go to Bed 01 [1080p Hi10P AC3][F4D8E418].mkv" to "/dst/Go to Bed/[Shino] Go to Bed 01 [1080p Hi10P AC3][F4D8E418].mkv"
+
+MATCH: "[SupersDisplease] Kimi wa Nero - 01v2 (1080p) [3838CF72].mkv" => Go to Bed
+Superior release found: "/dst/Go to Bed/[Shino] Go to Bed 01 [1080p Hi10P AC3][F4D8E418].mkv"
+
+MATCH: "[Shino] Go to Bed 01v2 [1080p Hi10P AC3][F4D8E418].mkv" => Go to Bed
+Inferior release found: "/dst/Go to Bed/[Shino] Go to Bed 01 [1080p Hi10P AC3][F4D8E418].mkv"
+Copied "[Shino] Go to Bed 01v2 [1080p Hi10P AC3][F4D8E418].mkv" to "/dst/Go to Bed/[Shino] Go to Bed 01v2 [1080p Hi10P AC3][F4D8E418].mkv"
+```
+
+The end result is that only file is retained in the library:
+
+```console
+$ tree /dst/
+/dst/
+└── Go to Bed
+    └── [Shino] Go to Bed 01v2 [1080p Hi10P AC3][F4D8E418].mkv
+```
+
+I started writing yurizaki sometime in 2020, or possibly even 2019. Then I got it to a reasonably working state and just started using it half-unfinished. After that time, I've actually [published several Rust projects on GitHub](https://github.com/Hamuko?tab=repositories&language=rust), meaning that this is not actually my first Rust release. But since all of those were written after the conception of yurizaki, I'm still going to call it the first.
+
+But despite being my first attempt at Rust, and being left unfinished literally for years, it has actually worked very well in my use. I guess that might be one of the benefits of Rust – if you get it to compile, and you didn't litter your code with shortcuts, it might reasonably handle any situation you throw at it. Although my code did definitely have some shortcuts, and still does, but it has still worked fine. I don't remember if I've ever yurizaki panic on me.
+
+I do still have some things I want to add to it though, so it's definitely not completely finished. I for example want to be able to run custom commands after copying to automate other things. It'd also be beneficial to reduce the remaining `unwrap()` uses to improve stability. I've also noticed that [anitomy](https://github.com/erengy/anitomy) doesn't always play nicely with [certain perverted titles](https://anilist.co/anime/145665/NieRAutomata-Ver11a/), so regular expression overrides might also be a good idea.
+
+Oh yeah, and there definitely are no unit tests yet. I always find unit testing in Rust to be a pain in comparison to a more flexible language like Python.
+
+(Named after Yurizaki Mira from Dimension W, an absolute cutie patootie.)
