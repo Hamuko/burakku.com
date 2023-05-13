@@ -49,7 +49,7 @@ Inferior release found: "/dst/Go to Bed/[Shino] Go to Bed 01 [1080p Hi10P AC3][F
 Copied "[Shino] Go to Bed 01v2 [1080p Hi10P AC3][F4D8E418].mkv" to "/dst/Go to Bed/[Shino] Go to Bed 01v2 [1080p Hi10P AC3][F4D8E418].mkv"
 ```
 
-The end result is that only file is retained in the library:
+The end result is that only one file is retained in the library:
 
 ```console
 $ tree /dst/
