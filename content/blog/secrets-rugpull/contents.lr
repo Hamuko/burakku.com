@@ -1,0 +1,58 @@
+title: Secrets 4 - Update rugpull
+---
+pub_date: 2023-05-31
+---
+tags:
+software
+---
+body:
+
+Promise updates, take the money, and then ask for more.
+
+[Secrets](https://secrets.app/) by [Outer Corner](https://outercorner.com/) is a password manager for macOS and iOS. They just released the latest version of the software, Secrets 4, today and rarely do I feel as outright scammed by software as I do now.
+
+I decided to start using Secrets a couple of months ago after looking for a successor to my previous password manager. It had many good things going for it: it was a native macOS/iOS app, it didn't require a subscription, the data was hosted in iCloud, it had an integration for Windows, and so on.
+
+However, there was one large concern that I had: [the last major update was in March 2021](https://outercorner.com/blog/2021/03/secrets-3.6-tying-up-loose-ends/), two years prior.
+
+No one wants to buy a product that is unsupported, especially when it comes to software. This is especially important on macOS and iOS side, as Apple is famous for breaking old software in yearly updates. Windows users do not suffer nearly as much from this, as it's not unthinkable to be able to run a Windows 95 application in Windows 11. No wonder Windows developers have been so slow to adopt 64-bit and ARM support.
+
+So I did what any good consumer should do: I dug around some. More specifically, I dug around some on Twitter.
+
+<a href="https://twitter.com/outercorner/status/1600189882869088257" target="_blank">
+    <img class="no-border" src="tweet1.png" alt="Secrets tweet on Dec 6, 2022">
+</a>
+
+<a href="https://twitter.com/outercorner/status/1629030740271722496" target="_blank">
+    <img class="no-border" src="tweet2.png" alt="Secrets tweet on Feb 24, 2023">
+</a>
+
+<a href="https://twitter.com/outercorner/status/1636061769490628616" target="_blank">
+    <img class="no-border" src="tweet3.png" alt="Secrets tweet on Mar 15, 2023">
+</a>
+
+Okay, so Secrets has not seen a big update in over two years, but the developer has made multiple tweets promising an update, and a big one at that. So I would in fact not be buying an abandoned piece of software. So I decided to pull the trigger, and bought both the macOS and iOS versions of Secrets for about 40€ in total.
+
+And then, the developer abandoned the software.
+
+On May 18th, 2023, [Outer Corner announced that Secrets 4, the major update being promised since last year, would be a paid upgrade](https://outercorner.com/blog/2023/05/announcing-secrets-4/). But to soothe old users, existing users would be promised a "considerable discount". _"Okay"_, I figured, _"I guess I need to spend a couple of dollars more for this big update."_
+
+Today, Secrets 4 was released. The full and complete version of the universal app was offered to existing users as a launch day special for the low, low price of… 50€. That's after the considerable 50% discount. If you wanted to upgrade to the basic version of Secrets 4, you could get it for the low, low price of… 50€ again.
+
+So, having paid 40€ for Secrets just two months prior with a promise of a big update, I am now being asked for somewhere between 50€ and 100€ to get that major update that was promised and advertised multiple times.
+
+Ever since I bought Secrets, I have received a single update. The macOS version of Secrets was updated to version 3.8.5 about a month ago, which "fixed a couple of compatibility issues with macOS Ventura". The iOS version has not been updated in 10 months as of writing.
+
+The developer Paulo Andrade has been deflecting criticism of the paid upgrade by telling people that Secrets users have been enjoying free updates for seven years. Good for those users, I guess. I sure didn't! The update that was coming my way, has been turned into a paid upgrade. I just got that single-sentence update in the two months.
+
+You could argue that "update" does not mean that it's free of charge. However, I feel like "update" is an update to the existing software, and not a completely new application on the App Store and a separate purchase. And I feel like Outer Corner agrees with me, considering the [announcement post for Secrets 4](https://outercorner.com/blog/2023/05/secrets-4-has-shipped/) only talks about an "upgrade", not an "update".
+
+It's not like Secrets 3 is a perfect password manager as it is. I'm currently suffering from random freezes when invoking Secrets from the Firefox extension, the image cropper in the application does absolutely nothing, and the image rendering for the thumbnails on macOS is garbage. I always just figured that since the update was coming, I'd just bear with it and hope that the update fixes everything. Had I been told that the version of Secrets would be the end of the road, I'd probably have refunded my purchase within the 14-day cooling off period. Or just not upgraded from the trial to begin with.
+
+Technically the version of Secrets that I have is _not_ abandoned. Completely abandoned, that is. The developer has that they'll support Secrets 3 for "the near future". What is the definition of "near future"? Absolutely no idea, the developer refused to elaborate. My expectations of the future after all of this are very low. I imagine I will be relying on the good graces of Apple to not kill any of the API that Secrets 3 uses in order to use it on future versions of macOS and iOS, and not Outer Corner's support.
+
+I don't like how almost every paid application these days is shifting to a subscription system. That was one of the reasons why I chose Secrets after all. However, the situation with Secrets is even worse than subscriptions – I'm currently doing like 20€ per month of active support, considering that Secrets 3 is now unceremoniously on life support. Secrets has been awful value for money. Even the Photoshop + Lightroom bundle is less than 20€/month, and Adobe software aren't known for being a bargain (at least for non-professionals).
+
+I do understand that Secrets is made by a small indie development company whose developer needs to eat. However, I find the practice of selling an already-axed version of a software without any kind of a warning to be anti-consumer. I feel like companies have two very good alternatives to the way Outer Corner did things: offer a free upgrade to anyone who bought in the last [appropriate amount of time], or make it very clear that you are buying an unsupported product with no future.
+
+If it's not clear already, I think you should **not** buy Secrets. But if you do, don't expect updates.

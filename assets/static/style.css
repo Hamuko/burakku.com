@@ -152,6 +152,10 @@ p img {
     width: 100%;
 }
 
+p img.no-border {
+    border: none;
+}
+
 pre {
     border: 1px solid;
     padding: 20px;
