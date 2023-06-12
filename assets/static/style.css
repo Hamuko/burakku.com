@@ -149,7 +149,7 @@ p a {
 
 p img {
     border: 1px solid #fff;
-    width: 100%;
+    max-width: 100%;
 }
 
 p img.no-border {

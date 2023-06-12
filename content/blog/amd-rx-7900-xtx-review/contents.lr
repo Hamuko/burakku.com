@@ -1,0 +1,77 @@
+title: AMD RX 7900 XTX review
+---
+pub_date: 2023-06-12
+---
+tags:
+hardware
+review
+---
+body:
+
+![AMD RX 7900 XTX](thumbnail.jpg)
+
+The worst graphics card I've had the displeasure of owning.
+
+Now, I'm not going to lie: I'm no graphics card expert. Before the RX 7900 XTX, the three graphics card that I've owned were the Nvidia RTX 3060, the Nvidia GTX 760 and the Nvidia GeForce 9800 GT. If I don't misremember, those were bought in 2021, 2014 and 2008 respectively. Having only had experience with four different GPUs over a span of 15 years definitely doesn't give me the credentials to review a graphics card properly.
+
+However, I can still say that the AMD RX 7900 XTX is definitely the worst card I have ever owned. Why? Because it just doesn't work.
+
+### May
+
+I bought my 7900 XTX at the beginning of May. Thankfully AMD.com uses DHL, my absolute favourite courier service in Finland, and I managed to get my grubby little hands on my GPU in mere five days after placing the order. After I got done with work, I painstakingly replaced the RTX 3060 inside my gaming PC (sandwich-style PC cases are not easy to work in), booted up and installed drivers. And then, I decided to boot up the most graphically intensive game I have: Cyberpunk 2077.
+
+Turns out that the 7900 XTX could really only muster around 40 frames per second with the ray tracing settings I had. I would have expected a little more for a 1100-euro investment. But opening up the AMD performance overlay showed a culprit: the GPU junction temperature was at 110°C.
+
+Turns out that the [7900 XTX hot spot temperature problem that was in the news four months ago](https://www.pcgamer.com/amd-rx-7900-xtx-overheating-issue/) was still a thing.
+
+Well, nothing to do about it but contact AMD support. To their credit, they did immediately acknowledge that these products have a fault, although they seemed to be downplaying it to a degree ("may impact the performance but the card can still be used"). Nevertheless, I asked them to generate me an RMA so I could get my card switched for a working one. Then about a week passed before I got my shipping label because AMD support was kinda slow. Maybe they are dealing with a big influx of unhappy 7900 XTX owners?
+
+Since my assumption was that it'd only take a couple of weeks to get a card back, and since working inside the mini-ITX case gets on my nerves, I decided that I wouldn't reinstall my old graphics card back. It'll be back in a jiffy and I can just sate my gaming desires with the Steam Deck in the meanwhile.
+
+Unfortunately due to the poor pick-up schedules at my nearest DHL location, it took around a week from leaving the return package to it actually arriving at AMD's return location. At this point, it had already been two weeks since I got the initial card and that I submitted the RMA request. And then, AMD's partner kept sitting on the package for around week and a half, and so May turned to June.
+
+### June
+
+Finally in June, I got my second DHL shipment notification and DHL then hurried over the package to my front door in less than 24 hours. Again, immediately after work I painstakingly stuffed the 7900 XTX into my computer case and launched Cyberpunk 2077 to finally see what kind of performance the GPU can dish when it's not throttling.
+
+It overheated and throttled immediately.
+
+<div style="text-align: center;">
+    <img src="temps.png" alt="Junction temperature of 110°C" style="border: 1px solid #fff;">
+</div>
+
+Unfortunately the second card came just against the weekend, so I had no choice but to continue the already-long email chain with AMD customer support and try to get another RMA open. Although since I'd just spent the past three weeks looking at my half-finished gaming PC gathering dust, I was leaning more towards a refund than having to do the same process again.
+
+Then Monday comes and AMD replies. They couldn't ascertain that the graphics card was overheating if I didn't send them measurements from the AMD Radeon software. This felt a bit odd considering the first RMA they didn't bother even asking for evidence but I still went ahead and gathered them their precious Radeon screenshots. At least it's not difficult to document when the card hits 110°C as soon as you load a Cyberpunk 2077 save.
+
+Having proven to AMD that the card was in fact overheating using their own tools, AMD customer support had another quest for me: send system diagnostics reports of my gaming PC and prove to them that the GPU power cables (two 8-pin connectors) are connected. Again, I have a hard time understanding how this is necessary since a month ago the same customer support agent had told me that these cards have a known flaw.
+
+Unfortunately that was not enough. What was now required of me was to update my BIOS, do a clean reinstall of all AMD drivers, send details of the power supply that I was using for the card, and install the graphics card without the riser card my mini-ITX case requires. There is no clearance to install any kind of a graphics card with the motherboard in the case, so doing this would have required completely disassembling my entire PC.
+
+I'd had enough.
+
+I told AMD customer support that I was done playing their games. No BIOS update was going to fix this issue and AMD's drivers cannot be so bad that they turn the GPU into a hot plate *while* it's throttling. But thankfully after being told by a friend and [having been proven by der8auer](https://www.youtube.com/watch?v=26Lxydc-3K8), these cards actually have a single orientation in which they won't overheat. Unfortunately, that was not an orientation that was achievable mounting inside my case.
+
+So I did the only sensible thing imaginable: I grabbed two rolls of toilet paper and very carefully perched my gaming PC on its back to get the card in a vertical orientation. And while the PC might have been *very* unstable when it came to sitting on those bog rolls, the card did stay at a stable 80°C while playing Cyberpunk 2077. Clocks were also staying up and the fans were running a whopping 1100 RPM slower.
+
+And those stats stayed stable for over 20 minutes. Then I turned the computer back up again. Temperatures immediately skyrocketed. Not even a minute and the junction temperature was 110°C, forcing the card to throttle itself. So the cooler was most definitely busted for the second time in a row.
+
+![Temperature and fan graphs](graphs.png)
+
+Thankfully, telling AMD customer support how fed up I was with their diagnosis for an issue they are already aware of, and sending them the graphs of the vertical orientation test.
+
+And so, today, I dispatched the AMD RX 7900 XTX towards AMD's fulfillment center. Hopefully in a couple of weeks time, I will have my money back and I can leave this episode behind me.
+
+### Future
+
+I think there are two lessons that I've learned from this experience.
+
+First of all, I really need to do the research before putting down this kind of money towards a product. On some level, I was aware that AMD had a overheating problem with some of its products. But that was in the news months ago. And it only affected some units (or so AMD claimed). That's surely not something that I'd encounter. Twice.
+
+And secondly, maybe just avoid buying reference graphics cards. They're clearly not that good and at least when it comes to AMD, neither is the customer support. And based on the discussions I've had with people, it seems like Nvidia support is not world-class either.
+
+But I'm still on the market for a new graphics card. The reason why I picked the RTX 3060 was because I hadn't owned a gaming PC for over seven years at the time, and I wanted to try out PC gaming again with a careful approach. But with the amount of PC gaming I've done lately, and the inherent low performance of the card, I want to upgrade. But to what?
+
+One of the reasons why I went with the 7900 XTX was because I didn't want to give my money to Nvidia and support the insane prices that they charge for their cards. The AMD RX 7900 XTX and Nvidia RTX 4080 have comparable performance but the 7900 XTX is over 200€ cheaper. But now that I've put my money where my mouth is, and fought against the Nvidia hegemony, the only things I have left to show for it are a long email thread with AMD customer support and additional scratches in my GPU bracket.
+
+So now I need to choose: do I go for a custom 7900 XTX design like the [Sapphire PULSE 7900 XTX](https://www.sapphiretech.com/en/consumer/pulse-radeon-rx-7900-xtx-24g-gddr6) and pay a premium over the reference cooler design just to get a working card, or do go back to Team Green with my tail between my legs and pay hundreds of euro more, to a point where it makes sense to just go for the RTX 4090 instead? I feel like there are no good options here, but Nvidia has yet to burn me.
