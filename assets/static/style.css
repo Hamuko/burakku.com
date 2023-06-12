@@ -109,6 +109,11 @@ header h1 {
     font-size: 56px;
 }
 
+img.unscaled {
+    border: 1px solid #fff;
+    max-width: 100%;
+}
+
 main {
     grid-area: main;
     margin-bottom: 20px;
@@ -149,7 +154,7 @@ p a {
 
 p img {
     border: 1px solid #fff;
-    max-width: 100%;
+    width: 100%;
 }
 
 p img.no-border {
