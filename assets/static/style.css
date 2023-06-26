@@ -96,11 +96,15 @@ code {
 
 h1 {
     font-size: 56px;
-    padding: 30px;
+    margin: 36px 0;
 }
 
 header {
     grid-area: header;
+}
+
+header h1 {
+    padding: 30px;
 }
 
 header h1 {
@@ -202,4 +206,16 @@ pre > code {
 .tag {
     border: 1px solid #fff;
     padding: 0.2em 0.4em;
+}
+
+.title-container {
+    margin: 36px 0;
+}
+
+.title-container a {
+    font-weight: 600;
+}
+
+.title-container h1 {
+    margin: 0;
 }

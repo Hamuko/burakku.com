@@ -5,6 +5,11 @@
 
 {% block title %}{{ this.title }}{% endblock %}
 {% block body %}
+  <div class="title-container">
+    <h1>Blog</h1>
+    <a href="/feed.xml">Atom feed →</a>
+  </div>
+
   {% for child in this.pagination.items %}
     {{ render_blog_post(child, from_index=true) }}
   {% endfor %}
