@@ -221,6 +221,18 @@ th {
     justify-content: space-between;
 }
 
+.project {
+    margin: 40px 0;
+}
+
+.project h2 {
+    margin: 0;
+}
+
+.project p {
+    margin: 5px 0;
+}
+
 .tag {
     border: 1px solid #fff;
     padding: 0.2em 0.4em;

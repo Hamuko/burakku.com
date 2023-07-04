@@ -1,0 +1,10 @@
+_model: project
+---
+title: beets-mpdqueue
+---
+url: https://github.com/Hamuko/beets-mpdqueue
+---
+description:
+[Beets](https://beets.io/) plugin to add files imported to the Beets library to your [Music Player Daemon](https://www.musicpd.org/) queue. Hasn't been updated in a while but should still work.
+
+Available on PyPI as [beets-mpdqueue](https://pypi.org/project/beets-mpdqueue/).

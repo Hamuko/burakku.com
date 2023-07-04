@@ -1,0 +1,5 @@
+_model: projects
+---
+title: Projects
+---
+_template: projects.html

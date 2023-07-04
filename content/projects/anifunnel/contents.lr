@@ -1,0 +1,10 @@
+_model: project
+---
+title: anifunnel
+---
+url: https://github.com/Hamuko/anifunnel
+---
+description:
+Plex webhook service written in Rust to automatically update your Anilist watching list.
+
+Binaries and Docker image available on GitHub.

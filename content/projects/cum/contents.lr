@@ -1,0 +1,10 @@
+_model: project
+---
+title: cum
+---
+url: https://github.com/Hamuko/cum
+---
+description:
+Manga site downloader inspired by package managers. Abandoned but still receives stars on GitHub because funny name.
+
+Available on PyPI as [cum](https://pypi.org/project/cum/).

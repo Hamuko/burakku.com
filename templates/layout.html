@@ -23,6 +23,7 @@
     <a {% if this._path == '/' %}class="active" {% endif %}href="/">Home</a>
     {% for href, title in [
       ["/blog", "Blog"],
+      ["/projects", "projects"],
     ] %}
       <a {% if this.is_child_of(href) %}class="active" {% endif %}href="{{ href|url }}">{{ title }}</a>
     {% endfor %}

@@ -1,0 +1,10 @@
+_model: project
+---
+title: yurizaki
+---
+url: https://github.com/Hamuko/yurizaki
+---
+description:
+Stateless file organizer daemon for anime releases written in Rust.
+
+Binaries and Docker image available on GitHub.
