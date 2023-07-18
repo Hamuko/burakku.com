@@ -15,7 +15,7 @@ When the Steam Deck was first announced, I was very sceptical of it. Back in Aug
 
 Now six months later, I absolutely adore my little Steam Deck. It's a really cool gaming device. Unfortunately due to [Steam breaking the _hours per platform_ tracking that SteamDB had](https://twitter.com/thexpaw/status/1672256909733244928), I can no longer see how many hours I've played on Linux (Steam Deck being my only Linux gaming PC), but my current estimate is that I've spent over 120 hours playing on the Steam Deck. Around 20 hours per month is not nothing for me, especially since I'm rarely more than five kilometres away from home / my gaming PC.
 
-**UPDATE:** Turns out that if you register [your own Steam API key](https://steamcommunity.com/dev/apikey), you can fetch your own Linux-specific Steam playtime. Turns out that my total Steam Deck (or rather Linux) playtime is 131 hours!
+**UPDATE:** Turns out that if you register [your own Steam API key](https://steamcommunity.com/dev/apikey), you can fetch your own Linux-specific Steam playtime. My total Steam Deck (or rather Linux) playtime is currently 131 hours!
 
 It's actually extremely easy to forget that the Steam Deck is a weird, specialised gaming PC that is running on top of modified Arch Linux even if almost all of my Steam library is just Windows games. You can see that a lot of work has gone into Proton to get it work as flawlessly as it does. It's of course not perfect, but it is downright sublime all things considered.
 
