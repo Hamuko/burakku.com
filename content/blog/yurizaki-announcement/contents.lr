@@ -5,6 +5,7 @@ pub_date: 2023-05-13
 tags:
 
 software
+Rust
 ---
 body:
 
@@ -32,7 +33,7 @@ Go to Bed:
 
 Then if you run yurizaki and start adding files to the source directory, you can see yurizaki matching, copying and removing files to keep the highest version of the highest-ranked release group in the library:
 
-```
+```text
 MATCH: "[SupersDisplease] Kimi wa Nero - 01 (1080p) [3838CF72].mkv" => Go to Bed
 No other release
 Copied "[SupersDisplease] Kimi wa Nero - 01 (1080p) [3838CF72].mkv" to "/dst/Go to Bed/[SupersDisplease] Kimi wa Nero - 01 (1080p) [3838CF72].mkv"

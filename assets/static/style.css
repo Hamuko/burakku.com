@@ -90,8 +90,13 @@ aside a {
 }
 
 code {
-    font-size: 18px;
+    font-size: 16px;
     font-family: Menlo, monospace;
+    background: white;
+    color: black;
+    border-radius: 6px;
+    padding: 3px 4px;
+    margin: 0 1px;
 }
 
 h1 {
@@ -111,6 +116,10 @@ header h1 {
     margin: 0;
     font-weight: 900;
     font-size: 56px;
+}
+
+hr {
+    color: white;
 }
 
 img.unscaled {
@@ -192,6 +201,11 @@ th, td {
 
 th {
     border-bottom: 2px solid white;
+}
+
+td > code {
+    font-size: 14px;
+    padding: 1px 3px;
 }
 
 .blog-post h2 {
