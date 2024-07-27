@@ -208,7 +208,7 @@ It's kinda hard to see why SwiftUI exists in the first place. I don't actually h
 
 Glad that it exists though. For all the frustrations I had during my time working with SwiftUI, I did actually find it pretty nice and fun. My gaming PC went unused for days during my busiest days building my app. I definitely want to try doing more native Apple development in the future. I want to try and port my client to iPadOS at some point in the future too, since it shouldn't be a massive undertaking with SwiftUI. Not that I'd be able to distribute it unless there's some drastic changes to iPadOS distribution coming, since I don't pay for Apple's developer program. No signing or notarisation for my apps.
 
-Although the next time I try to build anything that requires HTTP, I'm going to start immediately with <a href="https://github.com/Alamofire/Alamofire" target="_blank">Alamofire</a> instead of trying to make due with URLSession. Anything more than GET and you'll find yourself building another Alamofire.
+Although the next time I try to build anything that requires HTTP, I'm going to start immediately with <a href="https://github.com/Alamofire/Alamofire" target="_blank">Alamofire</a> instead of trying to make do with URLSession. Anything more than GET and you'll find yourself building another Alamofire.
 
 ## The app
 
