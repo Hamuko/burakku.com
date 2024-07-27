@@ -1,0 +1,10 @@
+_model: project
+---
+title: Dreadnought
+---
+url: https://github.com/Hamuko/Dreadnought
+---
+description:
+Experiemental native macOS qBittorrent WebAPI client written using SwiftUI.
+
+Downloads available on GitHub.

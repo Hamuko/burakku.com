@@ -1,0 +1,217 @@
+title: Building a qBittorrent client with SwiftUI
+---
+pub_date: 2024-07-27
+---
+tags:
+
+software
+Swift
+---
+body:
+
+![Building a qBittorrent client with SwiftUI](thumbnail.png)
+
+I recently got convinced to switch from rTorrent to qBittorrent for my Linux-downloading needs. Tried it out for a bit and decided that it was indeed the superior of the two, meaning I fully migrated all of my Linux ISOs to it. Unfortunately, I didn't really like any of the available clients for it, so I asked myself what any good software engineer would at that point: *how hard can it be*?
+
+I first thought about writing one in Rust, since I've had some experience with it lately, first building <a href="https://github.com/Hamuko/yurizaki" target=_blank>an automatic file sorter</a> and later <a href="https://github.com/Hamuko/anifunnel" target=_blank>an anime scrobbler</a>, but after a cursory look at <a href="https://github.com/gyscos/cursive" target=_blank>Cursive</a> and <a href="https://ratatui.rs/" target=_blank>Ratatui</a>, I buried that idea. Cursive just seemed like a bad fit and while Ratatui seemed like it could be a good fit for building my application, the tutorials were in middle of a rewrite and I didn't want to spend too much time learning from examples that were already abandoned. Rust and TUIs are tricky enough as they are without a bunch of outdated documentation.
+
+Since I didn't want to make yet another web client for qBittorrent, and I'd preferably have something with at least decent performance, I figured I could try writing a native desktop application. And since I'm on macOS and Swift is actually a really good language, Swift it was. I've had a bit of experience in writing Mac apps in Swift before, but I figured that while I was pursuing my half-baked idea, I might as well learn something new while I was at it.
+
+Cue **SwiftUI**, Apple's hot new declarative user interface framework that's actually not that new since it was released almost five years ago. Not sure if it's even that hot since I never hear anyone actually using it to ship products. Well, it's the thought that counts anyways.
+
+## Getting started
+
+The first thing I noticed about SwiftUI applications is that they take absolutely ages to build. People complaining about Rust having long compile times should try SwiftUI to get some perspective. Granted, most Rust programs don’t have graphical user interfaces, but it’s still quite a grating development experience. Change one line and it takes like 30–120 seconds to get a new debug build running on an M1 Max. I’ve done some stuff with Storyboard and XIB interfaces before and I do not remember any of them being nearly as bad.
+
+I first thought that the long build times were just a *me* problem, but after bitching about it on Bluesky, I did get <a href="https://bsky.app/profile/delightedcrow.dev/post/3krpn32goq22h" target="_blank">another developer chime in</a> to confirm that yes, SwiftUI takes a long time to build.
+
+The other thing that I quite quickly noticed was that SwiftUI does produce quite a lot of annoying and obscure roadblocks for you to decipher. For example, if you fuck up your types and are writing views that have any girth to them at all, Swift will just shame you about your massive views without telling what type error you've produced. That's a super fun one. <a href="https://danielchasehooper.com/posts/why-swift-is-slow/" target="_blank">Apparently Swift's type checker is just so slow that it decides to mercy kill the whole operation.</a>
+
+![Publishing changes from within view updates is not allowed](notypecheck.png)
+
+I've also had Xcode hard crash quite a few times while building out my user interface. I imagine most of them have been triggered by the preview window rendering things. Thankfully I've never lost any work from these crashes, only wasted a bit of time.
+
+## Redraw woes
+
+One thing about SwiftUI's automagic logic of updating your views whenever the application state changes is that it has some very definite flaws in it. I wanted to show my data in a table view where the table rows are selectable, but because I also have OCD, I want to be able to deselect rows to get my application back to a serene unselected state. In order to fulfil my desires, I figured that I'd add a keypress handler to my table so that every time Escape is pressed, the table's selection binding is cleared and my selection would be gone. Basically, like this:
+
+```swift
+struct TableView: View {
+    @EnvironmentObject var dataModel: DataModel
+
+    @State private var tableSelection = Set<RowObject.ID>()
+
+    var body: some View {
+        Table(dataModel.tableCollection, selection: $tableSelection) { ... }
+        .onKeyPress(.escape) {
+            tableSelection.removeAll()
+            return .handled
+        }
+    }
+}
+```
+
+Good idea in theory. You update `tableSelection` that is the selection binding for the `Table` view and the table should redraw without any rows selected. Unfortunately, while it does clear the selection, the table won't show the selection disappearing until the data source for the table updates. Since I'm building a torrent client that fetches the current state every 𝓃 seconds, it might take up to 𝓃 seconds for the deselection to be visible to the user after they press it. Not great.
+
+So, what if I just forced the data source to update? Would that work? Yeah, *kinda*.
+
+```swift
+struct TableView: View {
+    @EnvironmentObject var dataModel: DataModel
+
+    @State private var tableSelection = Set<RowObject.ID>()
+
+    var body: some View {
+        Table(dataModel.tableCollection, selection: $tableSelection) { ... }
+        .onKeyPress(.escape) {
+            tableSelection.removeAll()
+            dataModel.objectWillChange.send()
+            return .handled
+        }
+    }
+}
+```
+
+By sending the `objectWillChange` event for my table's data source, I am able to force the `Table` to redraw, which will make the deselection action feel and look responsive. Worked absolutely perfectly in my testing. So where's the *kinda* part?
+
+![Publishing changes from within view updates is not allowed](objectWillChange.png)
+
+Unfortunately this (seemingly?) functional code is actually undefined behaviour and Xcode will give you a big warning saying it's verboten. So what can I do instead?
+
+```swift
+struct TableView: View {
+    @EnvironmentObject var dataModel: DataModel
+
+    @State private var tableSelection = Set<RowObject.ID>()
+
+    var body: some View {
+        Table(dataModel.tableCollection, selection: $tableSelection) { ... }
+        .onKeyPress(.escape) {
+            DispatchQueue.main.async {
+                tableSelection.removeAll()
+                dataModel.objectWillChange.send()
+            }
+            return .handled
+        }
+    }
+}
+```
+
+Turns out that the solution is to wrap the code in `DispatchQueue.main.async` and you're golden. It works perfectly fine and gives zero errors. Not sure if this is actually much better than the previous solution, since we're just kicking off the code to be executed asynchronously in the main thread instead of doing it here and now. Shouldn't even be any difference in the thread since `onKeyPress()` handler should already be on the main thread, as calling `DispatchQueue.main.sync` instead will horribly crash your application. Would definitely be better if I could somehow either force the `Table` itself to update itself or have it update automatically whenever its selection changes, but at least there's *some* way to do it.
+
+## Is this supposed to work like this?
+
+One thing that I wasn't really fond of in the default qBittorrent user interface is that you can't easily remove a torrent and delete its data at the same time, since you always have to separately click a checkbox to delete files. Hence, my client would have two separate actions: remove and remove + delete. And those actions should be possible with keyboard alone.
+
+However, since it's quite risky to delete things without any confirmation, I decided to add a confirmation prompt before anything happens. Finder also does a very similar thing when you delete files on a network share, so it should feel pretty natural on macOS.
+
+<div style="text-align: center;">
+    <img class="unscaled no-border" src="finderdelete.png" alt="Delete prompt in Finder">
+</div>
+
+Thankfully this is fairly easy in SwiftUI. Just added a `confirmationDialog` to my view with a boolean binding that controls if the confirmation dialog is presented or not, with some customisations to boot.
+
+```swift
+.confirmationDialog(
+    "Remove torrent and delete data?", isPresented: $showDeleteConfirmation
+) {
+    Button("Remove and delete data", role: .destructive) {
+        // Delete logic here.
+    }
+
+    Button("Cancel", role: .cancel) {
+        // Cancel logic here.
+    }
+}
+.dialogIcon(Image(systemName: "trash.circle.fill"))
+.dialogSeverity(.critical)
+```
+
+The end result is very similar to what you get from Finder, except that my button has too much text for the buttons to fit on one row so they're stacked. Had I opted for a shorter "Delete" instead, I'd get them on one row.
+
+<div style="text-align: center;">
+    <img class="unscaled" src="delete.png" alt="Delete prompt">
+</div>
+
+Unfortunately what was less simple was the keyboard shortcuts. You get Escape as the cancel button for free by just having your cancel button defined with a "cancel" role, but the main action button isn't free. From what I've gathered is that you're supposed to use `Button.keyboardShortcut(.defaultAction)` to define that a button is the main button and the default key binding for the given scenario should be used. For a regular confirmation dialog, that button is naturally Enter.
+
+```swift
+.confirmationDialog(...) {
+    // This button is highlighted in blue and can be activated with Enter.
+    Button("Delete") { ... }.keyboardShortcut(.defaultAction)
+
+    // This button can be activated with Escape.
+    Button("Cancel", role: .cancel) { ... }
+}
+```
+
+But if you want to create a destructive confirmation dialog like what you find in Finder, there seemingly does not exist a keybinding that would allow you to press that button – even though Finder lets you do it with **⌘D**. At least I couldn't find one, and even if I did, it'd be so obscure that no Mac user would actually stumble upon it.
+
+```swift
+.confirmationDialog(...) {
+    // This button is highlighted in red and can be activated with ???.
+    Button("Delete", role: .destructive) {
+        ...
+    }.keyboardShortcut(.defaultAction)
+
+    // This button can be activated with Escape.
+    Button("Cancel", role: .cancel) { ... }
+}
+```
+
+I imagine that this is not intended, and that there should exist a `.defaultAction` shortcut that you can use with destructive confirmation dialogs. But since iOS is very light on keyboard shortcuts (I think you can use them if you have an iPad with a keyboard case?), I imagine that these sorts of things are just not a priority to Apple, as macOS is not where the money is. So after I'd determined that I probably wasn't just being dumb, I opted to just do the obvious thing instead:
+
+```swift
+.confirmationDialog(...) {
+    // This button is highlighted in red and can be activated with Cmd+D.
+    Button("Delete", role: .destructive) {
+        ...
+    }.keyboardShortcut(KeyEquivalent("D"), modifiers: .command)
+
+    // This button can be activated with Escape.
+    Button("Cancel", role: .cancel) { ... }
+}
+```
+
+Hope that Apple never changes how the one in Finder works.
+
+## It it any good? What's it for?
+
+After I'd spent a week or two working on this project, I opened up an old Storyboard-based project of mine since I had to make some updates to it. More specifically, I had to add a new text field to a settings section, which was to be located underneath an existing text field. And while I'd always considered the Xcode Interface Builder to be fairly easy and fun, aligning things and adding constraints manually did feel extremely silly after having worked in SwiftUI. Why am I doing all of this silly manual work, dragging and dropping fields and setting alignment constraints, when I could just do this?
+
+```swift
+Form {
+    TextField(text: $old, prompt: Text("Old and busted")) {
+        Text("Old and busted")
+    }
+    TextField(text: $new, prompt: Text("New hotness")) {
+        Text("New hotness")
+    }
+}
+```
+
+<div style="text-align: center;">
+    <img class="unscaled no-border" src="form.png" alt="SwiftUI form">
+</div>
+
+Fast, simple, concise, automatic alignment. What's not to love?
+
+On the other hand, whenever I did something that SwiftUI wasn't really designed to do, like have multiple lists in a `NavigationSplitView` sidebar, then it's a massive pain. Just getting this janky piece of shit solution working took a long while:
+
+<div style="text-align: center;">
+    <video autoplay loop>
+        <source src="sidebar.mp4" type="video/mp4">
+    </video>
+</div>
+
+It's kinda hard to see why SwiftUI exists in the first place. I don't actually have any data but I'm pretty sure native desktop and mobile applications are on a steep decline, with companies electing to ship Electron or React Native apps instead of writing native applications for macOS, Windows, Linux, iOS and Android separately. Writing a truly native application is only for the biggest of companies, who can afford to write a handful of separate applications, or small boutique shops, who are targetting a niche. Perhaps Apple engineers are just building it for themselves after getting tired of having to deal with multiple different UI systems at the same time, since everything they make needs to ship on iOS, iPadOS and macOS. They even ship the Calculator app on the iPadOS nowadays.
+
+Glad that it exists though. For all the frustrations I had during my time working with SwiftUI, I did actually find it pretty nice and fun. My gaming PC went unused for days during my busiest days building my app. I definitely want to try doing more native Apple development in the future. I want to try and port my client to iPadOS at some point in the future too, since it shouldn't be a massive undertaking with SwiftUI. Not that I'd be able to distribute it unless there's some drastic changes to iPadOS distribution coming, since I don't pay for Apple's developer program. No signing or notarisation for my apps.
+
+Although the next time I try to build anything that requires HTTP, I'm going to start immediately with <a href="https://github.com/Alamofire/Alamofire" target="_blank">Alamofire</a> instead of trying to make due with URLSession. Anything more than GET and you'll find yourself building another Alamofire.
+
+## The app
+
+All in all, I did manage to actually make something: a very bare-bones qBittorrent client called <a href="https://github.com/Hamuko/Dreadnought" target="_blank"><b>Dreadnought</b></a>. I even managed to make a shitty application icon for it! Progress has been extremely slow lately though, since I hit a point where I managed to make an application that does like 80% of the things I need in the qBittorrent Web UI, so everything else is more work for increasingly smaller gains.
+
+I do use it daily though, so it definitely serves someone's purpose, but it's hard to recommend to anyone that is not me, myself nor I. Someone might even call this a feature, since building apps with no general use means getting no support requests. I also wouldn't be surprised if the state updates are expensive as hell and if it was leaking memory, since I have done basically no performance testing. Well if nothing else, at least it ships without a copy of Chromium bundled inside it.

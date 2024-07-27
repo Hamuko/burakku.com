@@ -127,6 +127,10 @@ img.unscaled {
     max-width: 100%;
 }
 
+img.unscaled.no-border {
+    border: 0;
+}
+
 main {
     grid-area: main;
     margin-bottom: 20px;
@@ -154,6 +158,10 @@ nav a.active {
 
 nav a.current {
     font-style: italic;
+}
+
+ol li {
+    margin: 10px 0;
 }
 
 p {
@@ -201,6 +209,10 @@ th, td {
 
 th {
     border-bottom: 2px solid white;
+}
+
+video {
+    border: 1px solid #fff;
 }
 
 td > code {
