@@ -1,0 +1,36 @@
+title: Punch Line review
+---
+pub_date: 2025-07-29
+---
+tags:
+
+gaming
+review
+---
+body:
+
+![Punch Line](thumbnail.jpg)
+
+A punch line without the set-up.
+
+It’s frankly amazing how little effort PQube has put into this release while asking 49.99€ for it. The Steam version is shipped broken. As soon as you launch the game from the launcher, Steam will mark Punch Line as not running and thus will not update your gameplay time, won’t show you the Steam Overlay, and most importantly, will not allow you to use Steam Input. Seeing as I was trying to play this with my DualSense controller, not having my controller working at all was quite the issue.
+
+Thankfully there is a workaround for this: open the game installation directory, remove the `MAGESgamelauncher.exe` executable, make a copy of the `Game.exe` executable and rename that copy to `MAGESgamelauncher.exe`. Congratulations, you can now use the Steam overlay, Steam Input and you will be correctly marked as playing Punch Line on your profile.
+
+I’m guessing that this issue stems from the launcher launching the game executable as a completely separate process instead of a child process, so Steam never hooks the overlay/Steam Input into the `Game.exe` process and thus breaks everything. I’m also guessing that PQube has absolutely no quality assurance process since this should be the thing you notice immediately. Punch Line also *used* to have achievements on Steam – except those achievements never worked, so they “fixed” the issue by just removing them entirely. And they have the gall to ask 49.99€ for this release.
+
+![This sucks!](sucks.jpg)
+
+Once you’ve managed to actually get the game working, what you have is not that great. Ostensibly Punch Line is a visual novel with puzzle elements, but the puzzle elements in the game are so poor, annoying and unrewarding that the game would be better as a straight visual novel. There’s not really any way to figure out the puzzles, so you’ll just end up taking wild guesses and then doing a reset if you guessed wrong. There isn’t even any kind of fun interactions for non-progressing choices like there is for example in the Somnium segments in Uchikoshi’s AI – The Somnium Files games. The game is also around 12 hours long, and the annoying puzzle segments stop appearing around eight hours in – really for the game’s benefit.
+
+Besides the obvious launcher issue, there are a bunch of smaller issues that pop up while playing through the game. While it never prevented me from finishing the game, the default controller layout seems to be broken (at least on a DualSense controller), with buttons that should do something not doing it. The background audio sometimes eclipses dialogue audio, even with the default volume settings. And perhaps the most annoying issue: unskippable anime-style opening and ending themes that you will have to watch about twenty times each. It’s possible that these smaller issues could be fixed by tweaking the settings, but I don’t want to spend all of my time fixing this game on PQube’s behalf.
+
+Visually the game looks about okay – the character visuals are nice, but the environmental details leave room for improvement and the video segments, despite this having a tie-in anime, are kinda bad. I think they’ve had to retime the animations for the dialogue and it ends up looking more awkward than I would’ve imagined. At least during the final hour of the game, which is almost entirely video, the quality is at least decent. Thankfully there are no issues to point out on the music and voice acting side. Well, beyond the volume mixing issue noted earlier that is.
+
+![If you see panties twice in a row, seven billion people will die.](panties.jpg)
+
+Really the only highlight of Punch Line is the story. It’s definitely not Uchikoshi’s finest work, but there’s a fairly interesting story with likeable characters. A lot more lighthearted than a lot Uchikoshi works too, considering how much of it revolves around panties. The writing also does a good job of resolving all of the mysteries that it sets up, so you won’t be left with nagging questions at the end.
+
+I actually really liked the Punch Line anime when I watched it over a decade ago, and it made me want to play through the game. But since it took several years for the game to actually come out in the west, I kinda forgot about the whole thing and only got to it now that the anime’s already over ten years old. Perhaps that was for the best, since I’d already forgotten a lot of the details about it, and most of the story is the exact same as in the anime. Really what the game has going for it over the anime is that there’s a different (and better) ending, and the story is more expanded, as the game has about double the runtime.
+
+But alas, it’s really hard to recommend going through the story through the game rather than by watching the anime. Punch Line is a good story hidden in a bad game. There’s just way too many issues with this game and they will never ever be resolved. If you absolutely insist on playing the game instead of watching the anime, buy this on a deep discount. PQube simply does not deserve the full price of admission for this mess.
