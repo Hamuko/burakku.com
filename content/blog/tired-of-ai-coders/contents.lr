@@ -1,0 +1,65 @@
+title: I'm sick and tired of AI coders
+---
+pub_date: 2025-12-31
+---
+tags: software
+---
+_discoverable: no
+---
+body:
+
+![Please don't ask me about our software](thumbnail.jpg)
+
+This has been a weird year for me, with the biggest thing being that I suddenly found myself without a job. This was a bit of a new experience for me, since I hadn’t been unemployed ever since I graduated. Had to fill all kinds of government paperwork about it. Not exactly the happiest of circumstances to find yourself in, but I came into it from a much better starting position than many of my fellow layabouts, so I’ll refrain from crying about it too much.
+
+Now I’m back part of the workforce again, still making computers do things for us. Those things are just a bit different, and I’m doing them in a different environment, but I didn’t suddenly become a bricklayer or anything. I’m still even a remote employee, so I didn’t even have to go into the office like many of my peers did. The biggest difference though? I am now in a company where my coworkers, or at least the most vocal of them, have taken the AI pill – hard. And I really don’t care for it.
+
+<br>
+
+I’m a proponent of the idea that you get better at things by doing them. That’s why I have a goal of playing my guitar for at least 15 minutes every day, no matter what. I’m currently ~1700 days into this experiment, so that should have given me 425+ hours to improve my playing. According to Malcolm Gladwell, that’s over 4% of mastery. It’s also part of why I started a blog, since even if nobody read anything that I wrote, I’d at least give myself a chance to improve my writing. Not that I write here that often, but I feel like it has helped.
+
+This is one of the reasons why I’m skeptical of "agentic coding": I don’t think I will become a better developer by letting an AI model write code for me. And I’m almost certain that I won’t become a better developer by doing it like some of my coworkers are doing it. Some of them do not seem to do any kind of validation on the code beyond the fact that the unit tests (which the AI wrote) pass, the integration tests (which the AI wrote) work, and that the documentation (which the AI wrote) is accurate (as evaluated by the AI).
+
+Supposedly the easiest way of catching students using AI to cheat on their homework is simply by asking them questions about their work. The chances are that they will not be able to actually tell you what is inside whatever it is that they’ve just turned in. I can’t vouch for the veracity of this method, but I have noticed that the people who are using agents to code don’t really seem to know what’s inside the commits they’re shipping out. Presumably there are teams where AI is used in a responsible manner and people make sure to understand what they are shipping, but at least where I work, velocity seems to come before reason or understanding.
+
+I’ve seen the LinkedIn post of the tech executive praising their AI-native chief vibist, who is pushing out 250,000+ lines of code every month. That comes out to around 12,000 lines of code generated each working day. Obviously I can’t write 12,000 lines of code in a single day, but I don’t think I can review 12,000 lines of code in a day either. Is the price of our glorious AI-generated future that we just don’t look at the code that we ship?
+
+It really boggles my mind how some people can put so much trust in these language models. I don’t even trust my own code this much; I always go through my own code again before I submit it to be reviewed by another person. Either I’m the odd one here for double-checking my work, or LLMs have blinded developers into thinking they’re near-infallible 10x coders and reviewing their changes serves only to unnecessarily slow down your development. But from my experience working with a codebase that has a significant amount of AI-generated code in it, I think mistrust is the right call.
+
+The general quality of our AI-generated code is quite poor. Claude does very little in terms of adhering to DRY, it’s writing CRUD tests against completely barren databases, and if a test doesn’t pass, it might solve the issue not by changing the core business logic, but rather by changing the test until it passes. And I can't even really get into the truly important specifics, like what Claude is doing with for example access control. We probably wouldn't pass a security audit even if the audit was done by Claude itself.
+
+It feels like every day I discover a new problem that can be described as "developer prompted the ticket, didn’t check it, didn’t run it". There’s only so much code that I’ve had time to look at, or run, so I don’t even know how far the rot has spread. Most of these are in a greenfield project that has yet to land on the monitors of end-users, so customer experience thankfully hasn’t been impacted. And most importantly, I have never had to interact with a customer, so even if they were interacting with all of that vibe, they couldn’t associate my face with it. If I had to meet with the clients, I'd prefer to hide my face with a paper bag or something.
+
+Unfortunately these terrors are often committed by the same AI evangelists that are always telling us to "not trust the AI blindly" in our many agentic coding meetings, with Claude's `--dangerously-skip-permissions` always enabled. Why have I even had to attend multiple of these meetings anyway? Surely vibe coding hasn’t changed that much in a month that I needed a refresher course.
+
+<br>
+
+The non-coding parts are also not that great in my opinion. We’re churning out so much AI-generated documentation that there’s zero chance that anyone with a beating heart will ever read them. Probably why the text reads like it’s written for other robots. I think the only place where most of the text is written by humans at this point is Slack, and it also has a bunch of AI transcriptions too.
+
+Jira tickets are also hallucinated by LLMs. You know what’s a right laugh? Getting assigned a third-party integration ticket where all of the details on the external service have been made up by a GPU. Someone just had an AI fill out a whole document out of a single-line "Allow fetching data from [CRM service]". The only usable part was the name of the service. None of the use cases or API endpoints existed. It's fairy dust; it doesn't exist, it's not fucking real.
+
+I'm not even that opposed to maintaining documentation, but I did try to use Claude to update the `CHANGELOG.md` file on my behalf. Unfortunately it managed to generate excruciatingly detailed technical descriptions of all of the changes, so I just deleted all of it, and rewrote it by hand. Hopefully this way the next developer can actually read through the changelog and not ask their AI agent to summarise the changes for them.
+
+I’ve also noticed that trying to ask Claude about our codebases is also not that great. While debugging a problem that Claude had sidestepped by rigging the tests, I asked Claude to identify if we were validating the data we’re entering into our database. Claude then told me that we don’t have database constraints to validate anything, but we’re checking them in the code before it hits the database. I then looked and there was a function to validate the data, but absolutely nothing called it. And when I unrigged the tests, broken and unvalidated data was entered into the database. Shocking. Thankfully I had already determined the root cause before asking Claude, so I wasn’t led astray and only wasted some time looking up that unused code.
+
+The single best use case for Claude that I've seen so far is code reviews. Before I'd first review my changes myself, then I'd push it to remote and ask someone else to review it for me. Now I can first review it myself, then ask Claude what it thinks of my changes, and only then waste another human's time on it. The reason why I like it is that it has good upsides and minor downsides; if it notices something important, great, I can change it, and if it gets an absolutely abhorrent idea for a change, I can just ignore it.
+
+And since LLMs can understand natural language and code, I can ask one to check if my documentation is technically accurate, which I can then fix myself. As much as I'm shitting on AI, I do actually find this useful. Although not useful enough that I'd actually pay Anthropic for a subscription, and I presume the current prices are heavily subsidized.
+
+As far as the coding tasks that I entrust Claude, I'm currently keeping it for advanced copy-paste tasks only. By this, I mean that I might write five unit tests for a single model by hand, and then ask it to write tests for another model based on those previous handwritten tests. The way I'd have normally gone about it would've been to copy-paste the original tests anyway, so Claude can do it a bit smarter. Unfortunately, even when I've given it an explicit template for what it needs to write, it still has managed to conjure other test cases from outside my specific example, so even this use case is far from perfect.
+
+<br>
+
+I think code reviews also become quite interesting in terms of development team dynamics. I’ve seen pull requests co-authored by Claude with thousands upon thousands of lines of changes, and I don’t know if I can bring myself to review them. How much of my day am I going to devote to reviewing this change? And will I end up spending more time looking at this code than the guy who supposedly co-authored it with Claude?
+
+I mean, I’ve definitely had to submit large changesets for review too, but at least I was not asking other people to work harder on reviewing the code than I worked writing it, since those large pull requests took real effort. And I definitely couldn’t open several of them per week.
+
+So far I’ve been flying under the radar, trying to only snipe the smaller code reviews, and leaving the ones with tens of thousands of lines to other developers. I did start reading one larger change too, but someone approved it before I could really get going. Judging by how fast my coworkers get them approved, I can only assume that they’re checking the changes as rigorously as they are checking ~~their own~~ Claude’s work.
+
+<br>
+
+Unfortunately, I think AI has come to stay when it comes to software development. No idea what kind of a place the industry has for me in the future. The Internet keeps telling me that I am one of the ones who will be replaced. But I just can't imagine getting up in the morning and have the motivation to just prompt a model all day long. Personally, I’ll try to keep writing code by hand as long as I can, just like I write documentation and blog posts by hand, and enjoy the process and struggle.
+
+I imagine my time at my current place of work is going to be relatively short. My tenure is measured in months, and I'm already pretty sick and tired of the culture. My feelings towards work are so bad that I'd probably sleep better if my employment was terminated tomorrow. Presumably for shipping code too slowly or something, although I don't think anyone has really made a note of how organic my code still is. The only thing that keeps me going is receiving a steady salary, and I've still considered just outright quitting before finding my next job.
+
+The lesson learned from the current job? Figure out how any prospective employer is using AI before continuing, as nobody brought it up before my hiring, and I only discovered having joined a slophouse when I was in it, and told that I am expected to code using AI. Probably would've been better for both parties if they'd just told me ahead of time.
